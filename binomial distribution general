@@ -1,0 +1,51 @@
+# Code for Binomial distribution graph ! (any p)
+
+import math
+import matplotlib.pyplot as plt
+import sys
+
+import numpy as np
+print("If I flip a coin N times, what are the chances Heads will come up X times?")
+
+
+print("What are the chances of success? (Must be a fraction or decimal less than one)")
+b = float(input())
+if b > 1:
+    print("Try again hoe!!")
+    sys.exit()
+
+
+print("Pick an integer N:")
+n = int(input())
+print("Pick an X, which MUST be an integer less than or equal to N:")
+x = int(input())
+    
+if x > n:
+    print("TRY AGAIN HOE!!")
+    sys.exit()
+    
+
+prob = math.factorial(n) * (b**x) * ((1-b)**(n-x))/ (math.factorial(x) * math.factorial(n-x))
+print()
+print("ALL IN ALL:")
+print("The probability of heads coming up", x, "times in", n, "flips is", prob)
+
+xpoints = np.array([])
+ypoints = np.array([])
+
+for i in range (0, n + 1):
+    x = i
+    xpoints = np.append(xpoints, i)
+
+    
+    prob = math.factorial(n) * (b**i) * ((1-b)**(n-i))/ (math.factorial(i) * math.factorial(n-i))
+    ypoints = np.append(ypoints, prob)
+    
+
+plt.xlabel('Successes')
+plt.ylabel('Probability')
+plt.plot(xpoints, ypoints, 'o', color="pink")
+plt.plot(xpoints, ypoints, color = "magenta")
+plt.show()
+
+
