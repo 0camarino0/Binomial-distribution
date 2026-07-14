@@ -1,0 +1,51 @@
+# Code for Binomial distribution graph !
+
+import math
+import matplotlib.pyplot as plt
+
+import numpy as np
+print("If I flip a coin N times, what are the chances Heads will come up X times?")
+
+
+print("Are the chances of heads vs tails 50/50? Type YES or NO")
+if input() == "YES":
+    b = 2
+    print("Okay!")
+
+    print("Pick an N:")
+    n = int(input())
+    print("Pick an X, which MUST be less than or equal to N:")
+    x = int(input())
+    
+    total = b**n
+    prob = math.factorial(n) / (math.factorial(x) * math.factorial(n-x) * total)
+    
+    xpoints = np.array([])
+    ypoints = np.array([])
+    ypoints2 = np.array([])
+    for i in range (0, n + 1):
+        x = i
+        xpoints = np.append(xpoints, i)
+    
+        nx = math.factorial(n) / (math.factorial(i) * math.factorial(n-i))
+        #print("n = ", n, "k = ", i)
+        #print(nx, "= (n k)")   #this is the binomial coefficient
+        ypoints = np.append(ypoints, nx)
+        
+        prob = (nx)/(total)
+        ypoints2 = np.append(ypoints2, nx)
+        
+    print()
+    print("ALL IN ALL:")
+    print("The probability of heads coming up", x, "times in", n, "flips is", prob)
+    #print(xpoints, ypoints)
+    plt.xlabel('Successes')
+    plt.ylabel('Probability')
+    plt.plot(xpoints, ypoints, 'o', color="pink")
+    plt.plot(xpoints, ypoints, color = "magenta")
+    plt.show()
+
+if input() == "NO":
+    print("Okay come back later when I've coded for this <3")
+else:
+    print("... Pardon? Come back when you've learned how to READ INSTRUCTIONS <3")
