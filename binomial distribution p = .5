@@ -12,17 +12,21 @@ if input() == "YES":
     b = 2
     print("Okay!")
 
-    print("Pick an N:")
+    print("Pick an integer N:")
     n = int(input())
-    print("Pick an X, which MUST be less than or equal to N:")
+    print("Pick an X, which MUST be an integer less than or equal to N:")
     x = int(input())
     
+
     total = b**n
     prob = math.factorial(n) / (math.factorial(x) * math.factorial(n-x) * total)
+    print("ALL IN ALL:")
+    print("The probability of heads coming up", x, "times in", n, "flips is", prob)
+    
     
     xpoints = np.array([])
     ypoints = np.array([])
-    ypoints2 = np.array([])
+    ypoints2 = np.array([])   #not actually executed for anything rn
     for i in range (0, n + 1):
         x = i
         xpoints = np.append(xpoints, i)
@@ -33,19 +37,14 @@ if input() == "YES":
         ypoints = np.append(ypoints, nx)
         
         prob = (nx)/(total)
-        ypoints2 = np.append(ypoints2, nx)
+        ypoints2 = np.append(ypoints2, prob)
         
     print()
-    print("ALL IN ALL:")
-    print("The probability of heads coming up", x, "times in", n, "flips is", prob)
-    #print(xpoints, ypoints)
     plt.xlabel('Successes')
-    plt.ylabel('Probability')
+    plt.ylabel('Probability (without normalization)')
     plt.plot(xpoints, ypoints, 'o', color="pink")
-    plt.plot(xpoints, ypoints, color = "magenta")
+    plt.plot(xpoints, ypoints, color="magenta")
     plt.show()
 
-if input() == "NO":
-    print("Okay come back later when I've coded for this <3")
 else:
-    print("... Pardon? Come back when you've learned how to READ INSTRUCTIONS <3")
+    print("Okay come back later when I've coded for this <3")
